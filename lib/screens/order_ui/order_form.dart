@@ -177,22 +177,17 @@ class OrderForm extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         if (_orderFormKey.currentState.validate()) {
-                          DocumentReference docRef = store
-                              .collection("orders")
-                              .doc(auth.currentUser.uid);
+                          DocumentReference docRef = store.collection("orders").doc(auth.currentUser.uid);
                           String orderID = generateID();
                           DocumentSnapshot myOrders = await docRef.get();
                           Map products = {};
                           if (orderData.cratesOfEggsCount > 0) {
-                            products["crateOfEggQty"] =
-                                orderData.cratesOfEggsCount;
-                            products["crateOfEggUnitPrice"] =
-                                prefs.getDouble("crateOfEggUnitPrice");
+                            products["crateOfEggQty"] = orderData.cratesOfEggsCount;
+                            products["crateOfEggUnitPrice"] = prefs.getDouble("crateOfEggUnitPrice");
                           }
                           if (orderData.chickenCount > 0) {
                             products["chickenQty"] = orderData.chickenCount;
-                            products["chickenUnitPrice"] =
-                                prefs.getDouble("chickenUnitPrice");
+                            products["chickenUnitPrice"] = prefs.getDouble("chickenUnitPrice");
                           }
                           products["totalPrice"] = orderData.totalPrice;
                           var data = {
