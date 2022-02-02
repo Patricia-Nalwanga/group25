@@ -30,7 +30,6 @@ class Signup extends StatelessWidget {
           child: Builder(
             builder: (context) => Form(
               key: _signupFormKey,
-              autovalidateMode: AutovalidateMode.disabled,
               child: Consumer<UserProv>(
                 builder: (context, user, child) {
                   return ListView(
@@ -102,6 +101,7 @@ class Signup extends StatelessWidget {
                         iconVisible: true,
                         keyboard: TextInputType.visiblePassword,
                         fieldType: FieldType.password,
+                        
                       ),
                       GestureDetector(
                         onTap: () async {
@@ -144,7 +144,8 @@ class Signup extends StatelessWidget {
                                     ),
                                   );
                                 }
-                                prefs.setString("userID", "${_user.user.uid}");
+                                //TODO: No need for this.
+                                /* prefs.setString("userID", "${_user.user.uid}");
                                 prefs.setString("name", user.name);
                                 prefs.setString("email", user.email);
                                 prefs.setString(
@@ -152,12 +153,16 @@ class Signup extends StatelessWidget {
                                 prefs.setString("address", user.address);
                                 prefs.setString("role", _roleStr[user.role]);
                                 _progress.dismiss();
-                                print("Signup successful");
+                                print("Signup successful"); */
                               }
                             } on FirebaseAuthException catch (e) {
                               _progress.dismiss();
                               toaster(e.code, ToastGravity.BOTTOM);
                             }
+                          } else {
+                            print("Error with authentication");
+
+                            //TODO: This is probably the error
                           }
                         },
                         child: Padding(

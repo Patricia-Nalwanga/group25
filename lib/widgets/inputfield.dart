@@ -98,6 +98,7 @@ class _InputFieldState extends State<InputField> {
           ),
           child: TextFormField(
             // autofocus: true,
+            
             controller: _controller,
             validator: widget.validateField
                 ? MultiValidator(
